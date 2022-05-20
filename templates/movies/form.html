@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block main %}
+    <div class="jumbotron">
+        <h2>
+            {{ title }}
+        </h2>
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {% bootstrap_form form %}
+        </div>
+        <button type="submit" class="btn float-right btn-info">Submit</button>
+    </form>
+{% endblock %}

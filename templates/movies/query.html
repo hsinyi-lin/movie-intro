@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="jumbotron">
+        <h2>
+            查詢結果
+        </h2>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="text-center">
+                #
+            </th>
+            <th class="text-center">
+                電影名稱
+            </th>
+            <th class="text-center">
+                分級
+            </th>
+            <th class="text-center">
+                上映日
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="text-center">
+                {{ movie.id }}
+            </td>
+            <td class="text-center">
+                <a href="/movies/{{ movie.id }}/">
+                    {{ movie.name }}
+                </a>
+            </td>
+            <td class="text-center">
+                {{ movie.rated }}
+            </td>
+            <td class="text-center">
+                {{ movie.playdate | date:"Y/m/d" }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

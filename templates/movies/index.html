@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="jumbotron">
+    <h2>
+        電影介紹 - 目前有{{ cnt }}部電影
+    </h2>
+    <p>
+        Movie Introduction
+    </p>
+
+</div>
+<form class="form-inline float-right mb-4" action="/movies/search/" method="get">
+    <label>
+        快速查詢：
+    </label>
+    <input class="form-control mr-sm-2" type="text" name="movie_name" required/>
+    <button class="btn btn-primary my-2 my-sm-0" type="submit">
+        Search
+    </button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-center">
+                #
+            </th>
+            <th class="text-center">
+                電影名稱
+            </th>
+            <th class="text-center">
+                分級
+            </th>
+            <th class="text-center">
+                上映日
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for movie in movies %}
+        <tr>
+            <td class="text-center">
+                {{ movie.id }}
+            </td>
+            <td class="text-center">
+                <a href="/movies/{{ movie.id }}/">
+                    {{ movie.name }}
+                </a>
+            </td>
+            <td class="text-center">
+                {{ movie.rated }}
+            </td>
+            <td class="text-center">
+                {{ movie.playdate | date:"Y/m/d" }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

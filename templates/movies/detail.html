@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="jumbotron">
+        <h2>
+            {{ movie.name }}
+        </h2>
+        <p>
+            {{ movie.playdate | date:"Y/m/d" }}
+        </p>
+    </div>
+    {% if perms.movies.edit or perms.movies.delete %}
+        <a href="/movies/{{ movie.id }}/delete/" class="btn btn-outline-danger float-right mb-2">刪除</a>
+        <a href="/movies/{{ movie.id }}/edit/" class="btn btn-outline-primary float-right mb-2 mx-2">編輯</a>
+    {% endif %}
+    <dl>
+        <dt>
+            類型
+        </dt>
+        <dd>
+            {{ movie.types.all | join:"、" }}
+        </dd>
+        <dt>
+            內容
+        </dt>
+        <dd>
+            {{ movie.content }}
+        </dd>
+    </dl>
+    <hr>
+    <dl>
+    <dt>
+        導演資訊：{{ director.name }}
+        </dt>
+        <dd>
+            性別：{{ director.gender|yesno:"男,女" }}
+        </dd>
+        <dd>
+            生日：{{ director.birth | date:"Y/m/d" }}
+        </dd>
+    </dl>
+{% endblock %}
